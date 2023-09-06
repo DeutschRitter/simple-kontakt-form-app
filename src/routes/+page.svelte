@@ -1,32 +1,21 @@
-<!-- src/routes/kontakt.svelte -->
-<script>
-	let name = '';
-	let email = '';
-	let nachricht = '';
+<form name="contact" netlify netlify-honeypot="bot-field" on:submit={handleSubmit}>
+	<p hidden>
+		<label>
+			Don’t fill this out if you’re human: <input name="bot-field" />
+		</label>
+	</p>
 
-	async function sendForm() {
-		const response = await fetch('/api/sendEmail', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ name, email, nachricht })
-		});
-		const data = await response.json();
-		if (response.ok) {
-			alert('Danke für deine Nachricht!');
-			name = '';
-			email = '';
-			nachricht = '';
-		} else {
-			alert(`Ein Fehler ist aufgetreten: ${data.error}`);
-		}
-	}
-</script>
+	<label for="name">Name:</label>
+	<input type="text" id="name" name="name" required bind:value={name} />
 
-<form on:submit|preventDefault={sendForm}>
-	<input bind:value={name} placeholder="Name" required />
-	<input type="email" bind:value={email} placeholder="Email" required />
-	<textarea bind:value={nachricht} placeholder="Deine Nachricht" required />
+	<label for="email">E-Mail-Adresse:</label>
+	<input type="email" id="email" name="email" required bind:value={email} />
+
+	<label for="subject">Betreff:</label>
+	<input type="text" id="subject" name="subject" required bind:value={subject} />
+
+	<label for="message">Nachricht:</label>
+	<textarea id="message" name="message" required bind:value={message} />
+
 	<button type="submit">Senden</button>
 </form>
