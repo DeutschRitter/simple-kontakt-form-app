@@ -5,10 +5,15 @@ export async function post(request) {
 	const { name, email, nachricht } = request.body;
 
 	const transporter = nodemailer.createTransport({
-		service: 'gmail', // oder ein anderer E-Mail-Anbieter
+		host: 'smtp-mail.outlook.com',
+		port: 587,
+		secure: false, // Nutze TLS. SSL wird auf false gesetzt, da das Port nicht 465 ist.
 		auth: {
 			user: process.env.EMAIL_USER,
 			pass: process.env.EMAIL_PASS
+		},
+		tls: {
+			ciphers: 'SSLv3'
 		}
 	});
 
