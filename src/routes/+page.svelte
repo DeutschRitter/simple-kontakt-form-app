@@ -5,7 +5,7 @@
 		</label>
 	</p>
 
-	<label for="name">Name:</label>
+	<label for="name">Name1:</label>
 	<input type="text" id="name" name="name" required bind:value={name} />
 
 	<label for="email">E-Mail-Adresse:</label>
