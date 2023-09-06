@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer';
 
+const userEmail = process.env.EMAIL_USER;
+const userPassword = process.env.EMAIL_PASS;
+
 export async function post(request) {
 	const { name, email, message } = request.body;
 
@@ -7,14 +10,14 @@ export async function post(request) {
 	let transporter = nodemailer.createTransport({
 		service: 'gmail', // Zum Beispiel für Gmail
 		auth: {
-			user: 'alexander.ritter1978@gmail.com', // Ihre E-Mail
-			pass: 'YOUR_EMAIL_PASSWORD' // Ihr E-Mail-Passwort
+			user: userEmail, // Ihre E-Mail
+			pass: userPassword // Ihr E-Mail-Passwort
 		}
 	});
 
 	// E-Mail-Optionen
 	let mailOptions = {
-		from: 'alexander.ritter1978@gmail.com',
+		from: userEmail,
 		to: 'RECIPIENT_EMAIL@gmail.com',
 		subject: 'Neue Kontaktanfrage',
 		text: `Name: ${name}\nEmail: ${email}\nNachricht: ${message}`
