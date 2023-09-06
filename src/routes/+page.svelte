@@ -1,5 +1,5 @@
 <form
-	action="/pages/danke"
+	action="/danke"
 	name="netlify-form-example"
 	method="POST"
 	netlify-honeypot="bot-field"
