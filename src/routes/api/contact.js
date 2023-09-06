@@ -33,7 +33,7 @@ export async function post(request) {
 	} catch (error) {
 		return {
 			status: 500,
-			body: { error: 'Ein Fehler ist aufgetreten beim Senden der E-Mail.' }
+			body: { error: error.message }
 		};
 	}
 }
