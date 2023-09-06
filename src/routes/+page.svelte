@@ -1,4 +1,4 @@
-<form name="netlify-form-example" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+<form name="netlify-form-example" method="POST" netlify-honeypot="bot-field" data-netlify="true" action="/danke>
 	<input type="hidden" name="form-name" value="netlify-form-example" />
 	<label for="name">Name</label>
 	<input name="name" id="name" required placeholder="Name" type="text" />
