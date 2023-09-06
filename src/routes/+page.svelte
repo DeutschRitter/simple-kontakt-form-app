@@ -12,13 +12,14 @@
 			},
 			body: JSON.stringify({ name, email, nachricht })
 		});
+		const data = await response.json();
 		if (response.ok) {
 			alert('Danke für deine Nachricht!');
 			name = '';
 			email = '';
 			nachricht = '';
 		} else {
-			alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+			alert(`Ein Fehler ist aufgetreten: ${data.error}`);
 		}
 	}
 </script>

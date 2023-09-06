@@ -28,7 +28,7 @@ export async function post(request) {
 	} catch (error) {
 		return {
 			status: 500,
-			body: { error: 'Error sending email.' }
+			body: { error: error.message } // Sendet die genaue Fehlermeldung zurück
 		};
 	}
 }
