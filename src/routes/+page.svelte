@@ -1,28 +1,31 @@
+<!-- src/routes/kontakt.svelte -->
 <script>
 	let name = '';
 	let email = '';
-	let message = '';
+	let nachricht = '';
 
-	async function submitForm() {
-		const response = await fetch('/api/contact', {
+	async function sendForm() {
+		const response = await fetch('/api/sendEmail', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ name, email, message })
+			body: JSON.stringify({ name, email, nachricht })
 		});
-
 		if (response.ok) {
-			alert('Nachricht gesendet!');
+			alert('Danke für deine Nachricht!');
+			name = '';
+			email = '';
+			nachricht = '';
 		} else {
-			alert('Ein Fehler ist aufgetreten.');
+			alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
 		}
 	}
 </script>
 
-<form on:submit|preventDefault={submitForm}>
-	<input bind:value={name} placeholder="Name" />
-	<input bind:value={email} type="email" placeholder="Email" />
-	<textarea bind:value={message} placeholder="Nachricht" />
+<form on:submit|preventDefault={sendForm}>
+	<input bind:value={name} placeholder="Name" required />
+	<input type="email" bind:value={email} placeholder="Email" required />
+	<textarea bind:value={nachricht} placeholder="Deine Nachricht" required />
 	<button type="submit">Senden</button>
 </form>
